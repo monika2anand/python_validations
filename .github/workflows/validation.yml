@@ -20,5 +20,3 @@ jobs:
         find . -name '*.py' -exec pylint {} \;
     - name: Rebase from main
       uses: cirrus-actions/rebase@1.8
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
