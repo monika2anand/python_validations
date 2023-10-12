@@ -3,9 +3,8 @@ name: validation
 on: [pull_request]
 
 jobs:
-  super-lint:
-    if: github.event.pull_request.head.repo.name == github.repository
-    name: Lint code base
+  validate:
+    if: github.event.pull_request.head.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
