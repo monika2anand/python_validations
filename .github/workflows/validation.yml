@@ -3,7 +3,6 @@ name: validation
 on: [pull_request]
 jobs:
   build:
-    if: github.event.pull_request.head.ref == 'main'
     runs-on: ubuntu-latest
     name: Checks
     steps:
@@ -16,5 +15,7 @@ jobs:
     - run: black --diff --check $(git ls-files '*.py')
     - run: pylint --disable=all --enable=unused-import $(git ls-files '*.py')
     - run: mypy --strict $(git ls-files '*.py')
-  
-    
+     
+    - uses: cirrus-actions/rebase@1.8
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
