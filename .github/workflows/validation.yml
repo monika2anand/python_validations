@@ -1,9 +1,10 @@
 name: validation
 
-on: push
+on: [pull_request]
 
 jobs:
   super-lint:
+    if: github.event.pull_request.head.repo.name == github.repository
     name: Lint code base
     runs-on: ubuntu-latest
     steps:
@@ -15,3 +16,5 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+    
