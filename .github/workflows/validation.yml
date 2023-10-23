@@ -22,7 +22,7 @@ jobs:
         python -m pip install --upgrade pip
     - name: Analysing the code with pylint
       run: |
-        find . -name '*.py' -exec pylint {} \; >>pylint_check
+        pylint ../*.py >>pylint_check
         echo "pylint_check=$pylint_check"" >> $GITHUB_ENV
     - name: Test with pytest
       run: |
