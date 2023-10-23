@@ -22,7 +22,7 @@ jobs:
         python -m pip install --upgrade pip
     - name: Analysing the code with pylint
       run: |
-        echo "::set-output name=coverage::$(find . -name '*.py' -exec pylint {} \; >pylint_result.txt)"
+        echo "::set-output name=coverage::$(find . -name '../*.py' -exec pylint {} \; >pylint_result.txt)"
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
