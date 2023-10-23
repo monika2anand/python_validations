@@ -22,9 +22,10 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install pylint
     - name: Analysing the code with pylint
+      id: pylint
       run: |
-        pylint ../*.py >>pylint_check.txt
-        pylint_check=$(cat pylint_check.txt)>> $GITHUB_ENV
+        pylint ../*.py >pylint_check.txt
+        echo "pylint_check=$(cat pylint_check.txt)" >> $GITHUB_OUTPUT
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
@@ -33,6 +34,6 @@ jobs:
       with:
         to: "monika.anand@intel.com"
         subject: "Pylint execution results for latest CJE Automation code are attached with"
-        body: ${{ env.pylint_check }}
+        body: ${{ steps.pylint.outputs.pylint_check }}
   
     
