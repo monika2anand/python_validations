@@ -23,8 +23,8 @@ jobs:
         python -m pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint ../*.py >>pylint_check
-        echo "pylint_check=$pylint_check"" >> $GITHUB_ENV
+        pylint ../*.py >>pylint_check.txt
+        pylint_check=$(cat pylint_check.txt)>> $GITHUB_ENV
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
