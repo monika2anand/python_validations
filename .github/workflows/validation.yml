@@ -22,7 +22,7 @@ jobs:
         python -m pip install --upgrade pip
     - name: Analysing the code with pylint
       run: |
-        echo "pylint_output=$(find . -name '../*.py' -exec pylint {} \;)" >> $GITHUB_ENV
+        echo "set env.pylint_output=$(find . -name '../*.py' -exec pylint {} \;)" >> $GITHUB_ENV
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
