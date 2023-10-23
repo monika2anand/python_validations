@@ -4,6 +4,8 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      pylint_output: ""
     name: Checks
     steps:
     - uses: actions/checkout@v2
@@ -20,7 +22,7 @@ jobs:
         python -m pip install --upgrade pip
     - name: Analysing the code with pylint
       run: |
-        find . -name '*.py' -exec pylint {} \; >pylint_result.txt
+        echo "::set-output name=coverage::$(find . -name '*.py' -exec pylint {} \; >pylint_result.txt)"
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
@@ -29,6 +31,6 @@ jobs:
       with:
         to: "monika.anand@intel.com"
         subject: "Pylint execution results for latest CJE Automation code are attached with"
-        body: "Pylint execution results for latest CJE Automation code are attached with"
-        attachments: pylint_result.txt
+        body: "Pylint results are  ${{steps.get_coverage.outputs.coverage}}"
+  
     
