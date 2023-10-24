@@ -24,7 +24,7 @@ jobs:
     - name: Analysing the code with pylint
       id: pylint
       run: |
-        pylint_check=$(pylint ../../*.py)
+        pylint_check=$(find . -wholename '*.py' -exec pylint {} \;)
         echo "pylint_check=${pylint_check}" >> $GITHUB_OUTPUT
     - name: Test with pytest
       run: |
