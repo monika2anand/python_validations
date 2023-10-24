@@ -23,8 +23,7 @@ jobs:
       id: pylint
       continue-on-error: true
       run: |
-        pylint '*.py' >pylint_check.txt
-        echo "pylint_check=$(cat pylint_check.txt)" >> $GITHUB_OUTPUT
+        run: echo "pylint_check=$(pylint *.py)" >> $GITHUB_OUTPUT
     - name: Test with pytest
       continue-on-error: true
       run: |
