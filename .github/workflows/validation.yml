@@ -24,7 +24,8 @@ jobs:
     - name: Analysing the code with pylint
       id: pylint
       run: |
-        pylint ../*.py >pylint_check.txt
+        pylint_check=$(pylint ../../*.py)
+        echo "pylint_check=${pylint_check}" >> $GITHUB_OUTPUT
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
@@ -33,6 +34,6 @@ jobs:
       with:
         to: "monika.anand@intel.com"
         subject: "Pylint execution results for latest CJE Automation code are attached with"
-        body: ${cat pylint_Check.txt}
+        body: ${{ steps.set-variable.outputs.pylint_check }}"
   
     
