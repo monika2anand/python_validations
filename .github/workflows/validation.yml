@@ -31,6 +31,6 @@ jobs:
       with:
         to: "monika.anand@intel.com"
         subject: "Pylint execution results for latest CJE Automation code are attached with"
-        body: ${{cat pylint_check.txt }}"
+        body: ${cat pylint_check.txt}"
   
     
