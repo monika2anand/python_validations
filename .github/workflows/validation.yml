@@ -4,8 +4,6 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      pylint_output: ""
     name: Checks
     steps:
     - uses: actions/checkout@v2
@@ -24,8 +22,7 @@ jobs:
     - name: Analysing the code with pylint
       id: pylint
       run: |
-        pylint_check=$(find . -wholename '*.py' -exec pylint {} \;)
-        echo "pylint_check=${pylint_check}" >> $GITHUB_OUTPUT
+        find . -wholename '*.py' -exec pylint {} \;>pylint_check.txt
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
@@ -34,6 +31,6 @@ jobs:
       with:
         to: "monika.anand@intel.com"
         subject: "Pylint execution results for latest CJE Automation code are attached with"
-        body: ${{ steps.set-variable.outputs.pylint_check }}"
+        body: ${{cat pylint_check.txt }}"
   
     
