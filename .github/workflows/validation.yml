@@ -21,9 +21,9 @@ jobs:
         python -m pip install pylint
     - name: Analysing the code with pylint
       id: pylint
-      continue-on-error: true
+      continue-on-error: true   
       run: |
-        run: echo "pylint_check=$(pylint *.py)" >> $GITHUB_OUTPUT
+        echo "pylint_check=$(pylint *.py)" >> $GITHUB_OUTPUT
     - name: Test with pytest
       continue-on-error: true
       run: |
