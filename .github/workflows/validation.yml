@@ -23,7 +23,7 @@ jobs:
       id: pylint
       continue-on-error: true
       run: |
-        find . -wholename '*.py' -exec pylint {} \; >pylint_check.txt
+        pylint '*.py' >pylint_check.txt
         echo "pylint_check=$(cat pylint_check.txt)" >> $GITHUB_OUTPUT
     - name: Test with pytest
       continue-on-error: true
